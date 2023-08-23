@@ -52,5 +52,34 @@ namespace Shopping.Presentation.Controllers
             return new Response<UploadResponse>(obj);
 
         }
+        [Route("/[controller]/Remove")]
+        [Authorize(Roles = "Admin,User")]
+        [HttpPost]
+        public Response<bool> RemoveUploadedImage([FromBody] DeleteUploadedRequest removeRequest)
+        {
+            var baseUrl = _configuration.GetValue<string>("Url:BaseUrl");
+
+            if (!removeRequest.FileLink.Contains(baseUrl + "/Upload/"))
+            {
+                var err = new ExType { Status = HttpStatusCode.BadRequest, Message = "Wrong file link" };
+                throw new HttpResponseException(err);
+            }
+
+            var fileName = removeRequest.FileLink.Replace(baseUrl + "/Upload/", "");
+
+            if (System.IO.File.Exists(_environment.WebRootPath + "\\Upload\\" + fileName))
+            {
+                System.IO.File.Delete(_environment.WebRootPath + "\\Upload\\" + fileName);
+
+            }
+            else
+            {
+                var err = new ExType { Status = HttpStatusCode.BadRequest, Message = "File not exist" };
+                throw new HttpResponseException(err);
+            }
+
+            return new Response<bool>(true);
+
+        }
     }
 }

@@ -25,9 +25,4 @@
     <ProjectReference Include="..\Shoping.Service\Shopping.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-    <Folder Include="wwwroot\Upload\" />
-  </ItemGroup>
-
 </Project>
