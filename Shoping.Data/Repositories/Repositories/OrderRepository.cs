@@ -15,5 +15,13 @@ namespace Shopping.Data.Repositories.Repositories
         {
             this.Context = _context;
         }
+
+
+        public async Task<int> AddAndReturnValue(OrderEntity order)
+        {
+            await Table.AddAsync(order);
+            Context.SaveChanges();
+            return order.Id;
+        }
     }
 }

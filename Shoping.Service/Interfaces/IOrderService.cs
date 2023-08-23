@@ -1,4 +1,5 @@
 ﻿using Shoping.Model.Models;
+using Shoping.Model.Types.Order;
 using Shoping.Model.Types.Vote;
 using Shopping.Utility.Filter;
 using System;
@@ -12,5 +13,7 @@ namespace Shopping.Service.Interfaces
     public interface IOrderService 
     {
         Task PlaceOrder(int userId);
+        Task<IEnumerable<Order>> GetMyOrders(int userId);
+        Task<GetListOrdersWithPaginateResponse> GetOrders(PaginationFilter paginateData);
     }
 }

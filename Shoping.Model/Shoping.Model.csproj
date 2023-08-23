@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Shoping.Utility\Shopping.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Types\Order\" />
-  </ItemGroup>
-
 </Project>

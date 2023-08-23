@@ -26,5 +26,6 @@ namespace Shoping.Model.Models
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public int CreatedById { get; set; }
         public SimpleUser CreatedBy { get; set; } = null!;
+        public List<OrderProduct> OrderProducts { get; } = new();
     }
 }

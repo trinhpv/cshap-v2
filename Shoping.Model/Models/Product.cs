@@ -25,7 +25,18 @@ namespace Shoping.Model.Models
         public SimpleUser CreatedBy { get; set; } = null!;
 
         //public virtual ICollection<SimpleComment> Comments { get; } = new List<SimpleComment>();
-        //public virtual ICollection<VoteEntity> Votes { get; } = new List<VoteEntity>();
+        //public virtual ICollection<SimpleVote> Votes { get; } = new List<SimpleVote>();
+
+    }
+    public class SimpleProduct
+    {
+
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public float Price { get; set; }
+        public string FirstImage { get; set; } = "";
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public int CategoryId { get; set; }
 
     }
 }

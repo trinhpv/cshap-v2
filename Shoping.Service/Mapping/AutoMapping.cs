@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Shoping.Model.Models;
 using Shoping.Model.Types.Category;
+using Shoping.Model.Types.Order;
 using Shoping.Model.Types.Product;
 using Shopping.Data.Entities;
 using System;
@@ -31,6 +32,11 @@ namespace Shopping.Service.Mapping
             CreateMap<CommentEntity, Comment> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
             CreateMap<VoteEntity, SimpleVote> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
             CreateMap<CartEntity, Cart> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
+            CreateMap<OrderEntity, Order> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
+            CreateMap<OrderEntity, OrderResponseItem> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
+            CreateMap<OrderProductEntity, OrderProduct> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
+            CreateMap<ProductEntity, SimpleProduct> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
+            CreateMap<OrderProductEntity, SimpleOrderProduct> ().ForMember(des => des.Id, opt => opt.MapFrom(src => src.Id));
         }
     }
 }

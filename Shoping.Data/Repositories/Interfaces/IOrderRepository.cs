@@ -9,5 +9,6 @@ namespace Shopping.Data.Repositories.Interfaces
 {
     public interface IOrderRepository : IGenericRepository<OrderEntity>
     {
+        Task<int> AddAndReturnValue(OrderEntity order);
     }
 }
