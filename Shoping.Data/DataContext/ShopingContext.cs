@@ -12,7 +12,7 @@ namespace Shopping.Data.DataContext
     {
 
         public DbSet<UserEntity> Users { get; set; } = null!;
-        public DbSet<ProductEntity> Posts { get; set; } = null!;
+        public DbSet<ProductEntity> Products { get; set; } = null!;
         public DbSet<OrderEntity> Orders { get; set; } = null!;
         public DbSet<CommentEntity> Comments { get; set; } = null!;
         public DbSet<VoteEntity> Votes { get; set; } = null!;
