@@ -22,4 +22,12 @@
         Ascending,
         Descending
     }
+
+
+    public enum ReportTimeRange
+    {
+        Daily,
+        Monthly,
+        Yearly
+    }
 }

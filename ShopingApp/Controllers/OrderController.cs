@@ -45,6 +45,16 @@ namespace Shopping.Presentation.Controllers
             return new Response<IEnumerable<Order>>(result);
 
         }
+
+        [Route("/[controller]/UpdateStatus/{id}")]
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public Response<bool> UpdateStatus(UpdateStatusRequest newStatus, int id)
+        {
+            _orderService.UpdateStatus(newStatus.Status, id);
+            return new Response<bool>(true);
+        }
+
         [Route("/[controller]/GetList")]
         [Authorize(Roles = "Admin")]
         [HttpGet]

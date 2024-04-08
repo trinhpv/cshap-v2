@@ -93,6 +93,7 @@ namespace Shopping.Service.Services
         public async Task<GetListOrdersWithPaginateResponse> GetOrders(PaginationFilter paginateData)
         {
 
+            Expression<Func<OrderEntity, bool>> filter = e => e.CreatedById == 1;
             // add order 
             var orderInfo = paginateData.OrderBy + "_" + paginateData.OrderType.ToString();
             Func<IQueryable<OrderEntity>, IOrderedQueryable<OrderEntity>> orderBy = orderInfo switch
@@ -112,6 +113,22 @@ namespace Shopping.Service.Services
                 TotalCount = totalCount
             };
             return rs;
+        }
+
+        public  void  UpdateStatus(PaymentStatus status, int id)
+        {
+            var currOrder =  _orderRepository.GetById(id);
+
+            if (currOrder == null)
+            {
+                var err = new ExType { Status = HttpStatusCode.NotFound, Message = "Not found this order" };
+                throw new HttpResponseException(err);
+            }
+
+            currOrder.PaymentStatus = status;
+
+            _orderRepository.Update(currOrder);
+
         }
     }
 }
