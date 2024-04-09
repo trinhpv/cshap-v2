@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Shopping.Data.DataContext;
@@ -21,7 +25,8 @@ builder.Services.AddCors(options =>
                       });
 });
 // Add services to the container.
-builder.Services.AddDbContext<ShopingContext>();
+var connectionString = builder.Configuration.GetConnectionString("ShopingContext");
+builder.Services.AddDbContext<ShopingContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -79,6 +84,8 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+
+
 
 
 builder.Services.AddAuthentication(options =>

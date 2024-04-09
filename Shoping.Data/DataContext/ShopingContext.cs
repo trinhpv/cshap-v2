@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Shopping.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,14 @@ namespace Shopping.Data.DataContext
         public DbSet<CartEntity> Carts { get; set; } = null!;
         public DbSet<OrderProductEntity> OrderProducts { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ShopingContext(DbContextOptions<ShopingContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=ShoppingApp;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=ShoppingApp;Trusted_Connection=True;MultipleActiveResultSets=true");
+        //}
 
 
     }
